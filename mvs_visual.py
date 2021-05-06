@@ -165,7 +165,7 @@ def plot_scene(
     show_camera_wireframe = kwargs.get('show_camera_wireframe', True)
     marker_size = kwargs.get('marker_size', 2)
     segment_size = kwargs.get('segment_size', 1)
-    show_segment = kwargs.get('show_segment', True)
+    show_segment = kwargs.get('show_segment', False)
 
     # Set axis arguments to defaults defined at the top of this file
     x_settings = {**axis_args_dict}

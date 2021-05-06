@@ -25,7 +25,7 @@ def get_verts_and_rgb(pts3d, transform=None, add_centers=True):
             verts.append(transform @ vert)
         else:
             verts.append(vert)
-        rgb.append(pts3d[key].rgb / 255)
+        rgb.append(pts3d[key].rgb)
     
     verts = np.array(verts)
     rgb = np.array(rgb)
@@ -33,9 +33,9 @@ def get_verts_and_rgb(pts3d, transform=None, add_centers=True):
     if add_centers:
         center = verts.mean(axis=0)
         origin = np.array([0, 0, 0]).reshape(1, -1)
-        red = np.array([1, 0, 0]).reshape(1, -1)
-        yellow = np.array([1, 1, 0]).reshape(1, -1)
-        blue = np.array([0, 0, 1]).reshape(1, -1)
+        red = np.array([1, 0, 0]).reshape(1, -1) * 255
+        yellow = np.array([1, 1, 0]).reshape(1, -1) * 255
+        blue = np.array([0, 0, 1]).reshape(1, -1) * 255
         
         for i in range(50):
             verts = np.vstack((verts, center))

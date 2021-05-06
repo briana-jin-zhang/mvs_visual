@@ -101,7 +101,7 @@ poses = c2w_mats[:, :3, :4].transpose([1,2,0])
 poses = np.concatenate([poses, np.tile(hwf[..., np.newaxis], [1,1,poses.shape[-1]])], 1)
 
 # number of views for visualziation.
-N = 3
+N = 90
 img_wh = (400, 400)
 assert img_wh[0] == img_wh[1], 'Only isotropic imaging is supported.'
 yfov = np.pi / 3
@@ -124,7 +124,7 @@ principal_point = (200, 200)
 camera = pyrender.PerspectiveCamera(yfov=np.pi / 3, aspectRatio=1)
 
 # put the camera at (0, 0, 1.5) in world frame with up +y facing -z.
-start_c2w = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 1.5], [0, 0, 0, 1]])
+start_c2w = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 5], [0, 0, 0, 1]])
 # and rotate it around +y.
 c2ws = circular_c2ws_around_y(start_c2w, num_poses=N)
 
@@ -146,7 +146,8 @@ scene.add_node(camera_node)
 scene.add_node(light_node)
 
 # plot_dict = dict(bunny=dict(mesh=bunny_tmesh))
-verts, rgb = get_verts_and_rgb(pts3d)
+flipY = np.array([[1, 0, 0], [0, -1, 0], [0, 0, 1]])
+verts, rgb = get_verts_and_rgb(pts3d, transform=flipY)
 point_cloud = Segment(verts, None, rgb)
 plot_dict = dict(bushes=dict(segment=point_cloud))
 

@@ -154,7 +154,7 @@ for i, c2w in enumerate(c2ws):
     scene.set_pose(camera_node, pose=c2w)
     img = r.render(scene)[0]
     cv2.imwrite(f'view{i}.png', img[..., ::-1])
-    plot_dict['bunny'][f'view{i}'] = (
+    plot_dict['bushes'][f'view{i}'] = (
         PerspectiveCamera(
             focal_length=focal_length,
             principal_point=principal_point,

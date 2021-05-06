@@ -132,7 +132,7 @@ c2ws = circular_c2ws_around_y(start_c2w, num_poses=N)
 light_c2w = np.array(
     [[1, 0, 0, 0], [0, 0, 1, 1.5], [0, -1, 0, 0], [0, 0, 0, 1]]
 )
-# light = pyrender.PointLight(color=np.ones(3), intensity=5.0)
+light = pyrender.PointLight(color=np.ones(3), intensity=5.0)
 
 r = pyrender.OffscreenRenderer(*img_wh)
 scene = pyrender.Scene()
